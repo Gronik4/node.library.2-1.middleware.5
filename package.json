@@ -1,0 +1,21 @@
+{
+  "name": "node.library.2-1.express.4",
+  "version": "1.0.0",
+  "description": "Курс Node.js. Блок библиотеки node.js. Express. Задача №1. Начиная с этого блока, будем разрабатывать приложение «Библиотека». С каждым последующим заданием функционал приложения будет расширяться.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nanoid": "^5.1.5",
+    "nodemon": "^3.1.9"
+  },
+  "engines": {
+    "node": "^16.x"
+  }
+}
