@@ -1,6 +1,8 @@
 import express from 'express';
-import { nanoid } from 'nanoid';
-
+import logger  from './middleware/logger.js'
+import router from './routes/routes';
+//const fileRouter = require('./routes/routes.js');
+import notFound from './middleware/not-found.js';
 
 class Book{
   constructor(
@@ -24,7 +26,7 @@ class Book{
   }
 }
 
-const stor = {
+export const stor = {
   books: [
     new Book(
       'sDwXvXL',
@@ -34,7 +36,7 @@ const stor = {
       '10',
       'Твёрдый',
       'MartinIden_JackL',
-      
+
     ),
     new Book(
       'SgfsucY',
@@ -50,7 +52,7 @@ const stor = {
 
 const app = express();
 app.use(express.json());
-
+/*
 app.post('/api/user/login', (req, res)=>{res.json('id: 1, mail: test@mail.ru ')});
 app.get('/api/books', (req, res)=>{
   res.json(stor.books);
@@ -100,11 +102,16 @@ app.delete('/api/books/:id', (req, res)=>{
     res.status(404);
     res.json('404 | Книги с таким id нет в библиотеке.');
   }
-});
+});*/
+app.use(logger);
+app.use('/', router);
+app.use(notFound);
 
-const port = process.env.PORT || 7989;
+const port = process.env.PORT || 8005;
 app.listen(port, (err)=>{
   if(err) {
     return console.log(`string 65: ${err}`);
   } else {console.log(`Server starting on port ${port}`);}
 });
+
+module.exports = router;
