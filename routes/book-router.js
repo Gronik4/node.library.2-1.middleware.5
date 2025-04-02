@@ -1,13 +1,13 @@
-import express from "express";
-import { stor } from "../index";
-import { nanoid } from 'nanoid';
+const express = require('express');
+const stor = require('../utils/stor');
+const Book = require('../utils/Book');
+const { nanoid } = require('nanoid');
 
-export default function router() {
-const router = express.Router();
+const routersBook = express.Router();
 
-router.post('/api/user/login', (req, res)=>{res.json('id: 1, mail: test@mail.ru ')});
-router.get('/api/books', (req, res)=> {res.json(stor.books)})
-router.get('/api/books/:id', (req, res)=> {
+routersBook.post('/api/user/login', (req, res)=>{res.json('id: 1, mail: test@mail.ru ')});
+routersBook.get('/api/books', (req, res)=> {res.json(stor.books)})
+routersBook.get('/api/books/:id', (req, res)=> {
   const {id} = req.params;
   const findEl = stor.books.find(el=> el.id === id);
   if(findEl) {res.json(findEl);} else {
@@ -15,7 +15,7 @@ router.get('/api/books/:id', (req, res)=> {
     res.json('404 | Книги с таким id нет в библиотеке.');
   }
 });
-router.post('/api/books', (req, res)=>{
+routersBook.post('/api/books', (req, res)=>{
   const {title, description, authors, favorite, fileCover, fileName, fileBook} = req.body;
   if(!title || !description || !authors || !favorite || !fileCover || !fileName || !fileBook) {
     res.status(204);
@@ -28,7 +28,7 @@ router.post('/api/books', (req, res)=>{
     res.json(stor.books);
   }
 });
-router.put('/api/books/:id', (req, res)=>{
+routersBook.put('/api/books/:id', (req, res)=>{
   const {id} = req.params;
   const idx = stor.books.findIndex(el=> el.id === id);
   if(idx !== -1){
@@ -42,7 +42,7 @@ router.put('/api/books/:id', (req, res)=>{
     res.json('404 | Книги с таким id нет в библиотеке.');
   }
 });
-router.delete('/api/books/:id', (req, res)=>{
+routersBook.delete('/api/books/:id', (req, res)=>{
   const {id} = req.params;
   const idx = stor.books.findIndex(el=> el.id === id);
   if(idx !== -1) {
@@ -53,4 +53,5 @@ router.delete('/api/books/:id', (req, res)=>{
     res.json('404 | Книги с таким id нет в библиотеке.');
   }
 });
-}
+
+module.exports = routersBook;

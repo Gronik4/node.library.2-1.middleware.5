@@ -1,13 +1,14 @@
-import fs from 'fs';
-import os from 'os';
+const fs = require('fs');
+const os = require('os');
+const moment = require('moment');
+moment.lang('ru');
 
-export default function logger(req, res, next) {
+module.exports = (req, res, next)=> {
   let now = moment();
-  moment.lang('ru');
-  const today = now.format('MMMM DD YYYY, hh:mm:ss');
+  const today = now.format('MMMM DD YYYY, HH:mm:ss');
   const {url, method} = req;
   const line = `${today} ${url} ${method}`;
-  fs.appendFile('appeals', line + os.EOL, (err)=> {
+  fs.appendFile('serverRequest.log', line + os.EOL, (err)=> {
     if(err) throw err;
   });
   next();
