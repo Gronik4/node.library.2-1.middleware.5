@@ -9,7 +9,7 @@ const stor = {
       '10',
       'Твёрдый',
       'MartinIden_JackL',
-
+      '/api/books/sDwXvXL'
     ),
     new Book(
       'SgfsucY',
@@ -18,7 +18,8 @@ const stor = {
       'Виталий Зыков',
       '10',
       'Твёрдый',
-      'NamelessSlave_VitaliZ'
+      'NamelessSlave_VitaliZ',
+      'api/books/SgfsucY'
     )
   ] 
 };

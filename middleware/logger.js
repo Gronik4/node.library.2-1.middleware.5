@@ -8,7 +8,7 @@ module.exports = (req, res, next)=> {
   const today = now.format('MMMM DD YYYY, HH:mm:ss');
   const {url, method} = req;
   const line = `${today} ${url} ${method}`;
-  fs.appendFile('serverRequest.log', line + os.EOL, (err)=> {
+  fs.appendFile('requestIntoServer.log', line + os.EOL, (err)=> {
     if(err) throw err;
   });
   next();
