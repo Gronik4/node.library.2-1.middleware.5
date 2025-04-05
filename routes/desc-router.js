@@ -7,9 +7,12 @@ routerDesc.post('/upload-file',
   (req, res) => {
     if(req.file) {
       const {path} = req.file;
-      res.json(path);
+      console.log(`file upload ${path}`);
+      res.json({path});
+    } else {
+      res.status(400);
+      res.json('400 | Ошибка загрузки файла.');
     }
-    res.json();
 });
 
 module.exports = routerDesc;

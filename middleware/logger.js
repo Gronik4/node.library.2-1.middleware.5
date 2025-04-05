@@ -1,7 +1,7 @@
 const fs = require('fs');
 const os = require('os');
 const moment = require('moment');
-moment.lang('ru');
+moment.locale('ru');
 
 module.exports = (req, res, next)=> {
   let now = moment();

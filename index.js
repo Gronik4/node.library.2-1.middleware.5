@@ -10,10 +10,10 @@ const app = express();
 app.use(express.json());
 
 app.use(logger);
-app.use('/api/books/:id/download', express.static(__dirname + 'library'));
+//app.use('/api/books/:id/download', express.static(__dirname + 'library'));
 
 app.use('/', routersBook);
-app.use('/desc', routerDesc);
+app.use('/desc-router', routerDesc);
 app.use(errRout);
 
 const port = process.env.PORT || 8005;
