@@ -7,7 +7,7 @@ routerDesc.post('/upload-file',
   (req, res) => {
     if(req.file) {
       const {path} = req.file;
-      console.log(fileMulter.single('desc-text'));
+      console.log(req.file);
       res.json({path});
     } else {
       res.status(400);
