@@ -1,13 +1,12 @@
 const multer = require('multer');
 const { nanoid } = require('nanoid');
 
-const fileStorage = multer.diskStorage({
-  destination(req, file, cb) { // Настойка хранилища
+const storage = multer.diskStorage({
+  destination(req, file, cb){ // Настойка хранилища
     cb(null, 'library'); // Первый параметр - ошибка, второй - директория для хранения
   },
-  filename(req, file, cb) { // Настройка именования файлов
-    cb(null, `${nanoid(7)}-${file.originalname}`);
-    console.log(nanoid(7) + file.originalname);
+  filename(req, file, cb){ // Настройка именования файлов
+    cb(null, `${nanoid(7)}.txt`);
   }
 });
  //const allowedTypes = ['image/png', 'image/jpg', 'application/pdf', 'text/plain', 'text/js']; // Разрешенные типы файлов
@@ -19,4 +18,4 @@ const fileStorage = multer.diskStorage({
    }
  };*/
 
- module.exports = multer({fileStorage});
+ module.exports = multer({storage});

@@ -1,4 +1,4 @@
 module.exports = (req, res)=> {
   res.status(404);
-  res.json('404 | Книги с таким id нет в библиотеке.')
+  res.json('404 | Ошибка роута. With not-found.')
 }
