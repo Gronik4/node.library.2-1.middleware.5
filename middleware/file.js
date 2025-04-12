@@ -9,13 +9,13 @@ const storage = multer.diskStorage({
     cb(null, `${nanoid(7)}.txt`);
   }
 });
- //const allowedTypes = ['image/png', 'image/jpg', 'application/pdf', 'text/plain', 'text/js']; // Разрешенные типы файлов
- /*const fileFilter = (req, file, cb) => { //Фильтр типов файлов 
+ const allowedTypes = ['image/png', 'image/jpg', 'application/pdf', 'text/plain', 'text/js']; // Разрешенные типы файлов
+ const fileFilter = (req, file, cb) => { //Фильтр типов файлов 
    if (allowedTypes.includes(file.mimetype)) {
      cb(null, true); 
    } else {
      cb(null, false);
    }
- };*/
+ };
 
- module.exports = multer({storage});
+ module.exports = multer({storage, fileFilter});

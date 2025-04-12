@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.use(logger);
-app.use('/static', express.static('library'));
+//app.use('/api/books/:id/download', express.static('library'));
 app.use('/', routersBook);
 app.use('/desc-router', routerDesc);
 

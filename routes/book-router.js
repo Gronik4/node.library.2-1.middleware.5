@@ -2,6 +2,7 @@ const express = require('express');
 const stor = require('../utils/stor');
 const Book = require('../utils/Book');
 const { nanoid } = require('nanoid');
+const fs = require('fs');
 
 const routersBook = express.Router();
 
@@ -15,6 +16,12 @@ routersBook.get('/api/books/:id', (req, res)=> {
     res.json('404 | Книги с таким id нет в библиотеке.');
   }
 });
+routersBook.get('/api/books/:id/download', (req, res)=>{
+  const {id} = req.params;
+  const findEl = stor.books.find(el=> el.id === id);
+  const text = fs.readFileSync(`library/${findEl.fileBook}`, 'utf8');
+  res.json(text);
+})
 routersBook.post('/api/books', (req, res)=>{
   const {title, description, authors, favorite, fileCover, fileName, fileBook} = req.body;
   if(!title || !description || !authors || !favorite || !fileCover || !fileName || !fileBook) {
